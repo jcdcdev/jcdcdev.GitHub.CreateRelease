@@ -34,6 +34,14 @@ runs:
           echo "Checking tag $tag"
           if ($tag -lt $env:Version) {
             if ($previousVersion -eq $null -or $tag -gt $previousVersion) {
+              if ($tag -match "alpha|beta|rc") {
+                Write-Output "$tag is prerelease"
+                if ($env:Version -notmatch "alpha|beta|rc") {
+                  Write-Output "Skipping as $env:Version is not prerelease"
+                  continue
+                }
+              }
+
               $previousVersion = $tag
             }
           }
@@ -59,7 +67,7 @@ runs:
     - uses: jcdcdev/jcdcdev.Github.GenerateChangelog@main
       id: changelog
       with:
-        target-version: ${{ env.Version }}
+        target-version: ${{ inputs.version }}
         previous-version: ${{ steps.find-previous-tag.outputs.previous-version }}
         github-token: ${{ inputs.github-token }}
     - name: Create Release
@@ -68,6 +76,6 @@ runs:
         allowUpdates: true
         omitNameDuringUpdate: true
         token: ${{ inputs.github-token }}
-        name: ${{ env.Version }}
-        tag: ${{ env.Version }}
+        name: ${{ inputs.version }}
+        tag: ${{ inputs.version }}
         body: ${{ steps.changelog.outputs.changelog }}
