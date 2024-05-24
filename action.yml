@@ -59,7 +59,7 @@ runs:
     - uses: jcdcdev/jcdcdev.Github.GenerateChangelog@main
       id: changelog
       with:
-        target-version: ${{ env.Version }}
+        target-version: ${{ inputs.version }}
         previous-version: ${{ steps.find-previous-tag.outputs.previous-version }}
         github-token: ${{ inputs.github-token }}
     - name: Create Release
