@@ -61,6 +61,7 @@ runs:
       with:
         target-version: ${{ env.Version }}
         previous-version: ${{ steps.find-previous-tag.outputs.previous-version }}
+        github-token: ${{ inputs.github-token }}
     - name: Create Release
       uses: ncipollo/release-action@v1
       with:
