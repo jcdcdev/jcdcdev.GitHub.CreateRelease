@@ -8,6 +8,9 @@ inputs:
   version:
     description: "Version"
     required: true
+  github-token:
+    description: "GitHub Token"
+    required: true
 runs:
   using: "composite"
   steps:
@@ -63,7 +66,7 @@ runs:
       with:
         allowUpdates: true
         omitNameDuringUpdate: true
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ inputs.github-token }}
         name: ${{ env.Version }}
         tag: ${{ env.Version }}
         body: ${{ steps.changelog.outputs.changelog }}
