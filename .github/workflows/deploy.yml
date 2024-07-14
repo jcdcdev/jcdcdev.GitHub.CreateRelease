@@ -1,8 +1,5 @@
 name: Create Release and Push to Marketplace
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
   pull_request:
       types: [ closed ]
