@@ -1,5 +1,5 @@
 name: "Create Release"
-description: ""
+description: "Creates a GitHub release for the given version number. Uses SemVer convention to determine previous version and to generate changelog."
 author: "James Carter"
 branding:
   icon: "refresh-cw"

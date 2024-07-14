@@ -23,8 +23,8 @@ jobs:
       uses: gittools/actions/gitversion/execute@v0
     - name: Tag ${{ env.GitVersion_SemVer }}
       run: |
-        git config --local user.email "james@jcdc.dev"
-        git config --local user.name "James"
+        git config user.name "$env:GITHUB_ACTOR"
+        git config user.email "$env:GITHUB_ACTOR_ID+$env:GITHUB_ACTOR@users.noreply.github.com"
         git tag -a "$GitVersion_SemVer" -m "Release $GitVersion_SemVer"
     - name: Create Release ${{ env.GitVersion_SemVer }}
       uses: ncipollo/release-action@v1
