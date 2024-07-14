@@ -1,8 +1,8 @@
-name: "Create Release"
-description: "Creates a GitHub release for the given version number. Uses SemVer convention to determine previous version and to generate changelog."
+name: "Create Release | jcdcdev"
+description: "Creates a GitHub Release with automated changelog"
 author: "James Carter"
 branding:
-  icon: "refresh-cw"
+  icon: "tag"
   color: "gray-dark"
 inputs:
   version:
