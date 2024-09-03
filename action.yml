@@ -30,8 +30,8 @@ runs:
       shell: bash
       run: |
         git fetch --tags
-
-        if git tag -l | grep -q "^${tag}$"; then
+ 
+        if git tag -l | grep -q "^${{ inputs.version }}$"; then
           echo "Tag exists"
           exit 0
         fi
