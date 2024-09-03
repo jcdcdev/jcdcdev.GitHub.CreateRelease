@@ -47,7 +47,7 @@ runs:
       with:
         allowUpdates: true
         omitNameDuringUpdate: true
-        artifacts: ${{ inputs.artifacts }}
+        artifacts: ${{ inputs.artifact-name }}
         token: ${{ inputs.github-token }}
         name: ${{ inputs.version }}
         tag: ${{ inputs.version }}
