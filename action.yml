@@ -21,7 +21,7 @@ runs:
     - uses: jcdcdev/jcdcdev.Github.GenerateChangelog@main
       id: changelog
       with:
-        target-version: ${{ inputs.version }}
+        version: ${{ inputs.version }}
         github-token: ${{ inputs.github-token }}
     - name: Create Release
       uses: ncipollo/release-action@v1
