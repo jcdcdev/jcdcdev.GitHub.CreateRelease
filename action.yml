@@ -26,23 +26,23 @@ runs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+        - name: Create tag
+        shell: bash
+        run: |
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+        git tag -fa ${{ inputs.version }} -m "Release ${{ inputs.version }}"
+        git push --force origin ${{ inputs.version }}
+        - uses: jcdcdev/jcdcdev.Github.GenerateChangelog@main
+        id: changelog
+        with:
+          version: ${{ inputs.version }}
+          github-token: ${{ inputs.github-token }}
     - name: Download package
       uses: actions/download-artifact@v4
       with:
         name: ${{ inputs.artifact-name }}
         path: ${{ github.workspace }}/artifact
-    - name: Create tag
-      shell: bash
-      run: |
-        git config user.name "${{ github.actor }}"
-        git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
-        git tag -fa ${{ inputs.version }} -m "Release ${{ inputs.version }}"
-        git push --force origin ${{ inputs.version }}
-    - uses: jcdcdev/jcdcdev.Github.GenerateChangelog@main
-      id: changelog
-      with:
-        version: ${{ inputs.version }}
-        github-token: ${{ inputs.github-token }}
     - name: Create Release
       uses: ncipollo/release-action@v1
       with:
