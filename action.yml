@@ -29,11 +29,11 @@ runs:
     - name: Create tag
       shell: bash
       run: |
-      git config user.name "${{ github.actor }}"
-      git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
-      git tag -fa ${{ inputs.version }} -m "Release ${{ inputs.version }}"
-      git push --force origin ${{ inputs.version }}
-      - uses: jcdcdev/jcdcdev.Github.GenerateChangelog@main
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+        git tag -fa ${{ inputs.version }} -m "Release ${{ inputs.version }}"
+        git push --force origin ${{ inputs.version }}
+    - uses: jcdcdev/jcdcdev.Github.GenerateChangelog@main
       id: changelog
       with:
         version: ${{ inputs.version }}
