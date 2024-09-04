@@ -15,6 +15,10 @@ inputs:
     description: "An optional artifact name to upload to the release."
     required: false
     default: ""
+  rich-format:
+    description: "Rich format"
+    required: false
+    default: true
 outputs:
   changelog:
     description: "Changelog"
@@ -45,6 +49,9 @@ runs:
       with:
         version: ${{ inputs.version }}
         github-token: ${{ inputs.github-token }}
+        include-version-as-heading: ${{ input.rich-format }}
+        include-compare-link: ${{ input.rich-format }}
+        include-links: ${{ input.rich-format }}
     - name: Download package
       uses: actions/download-artifact@v4
       with:
