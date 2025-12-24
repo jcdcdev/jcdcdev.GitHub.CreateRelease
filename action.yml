@@ -34,7 +34,7 @@ runs:
       shell: bash
       run: |
         git fetch --tags
- 
+
         if git tag -l | grep -q "^${{ inputs.version }}$"; then
           echo "Tag exists"
           exit 0
@@ -44,7 +44,7 @@ runs:
         git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
         git tag -fa ${{ inputs.version }} -m "Release ${{ inputs.version }}"
         git push --force origin ${{ inputs.version }}
-    - uses: jcdcdev/jcdcdev.Github.GenerateChangelog@main
+    - uses: jcdcdev/jcdcdev.Github.GenerateChangelog@v1
       id: changelog
       with:
         version: ${{ inputs.version }}
